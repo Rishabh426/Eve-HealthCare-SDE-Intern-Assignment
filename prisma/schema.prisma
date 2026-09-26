@@ -67,3 +67,12 @@ model Booking {
   @@index([diagnosticCentreId])
   @@index([status])
 }
+
+model WebhookEvent {
+  id          String   @id
+  eventType   String
+  paymentId   String
+  bookingId   String
+  processedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+}
