@@ -2,6 +2,7 @@ import { Router } from "express";
 import generateId from "../utils/generateId.js";
 
 const router = Router();
+const API_URL = process.env.API_URL;
 
 router.post("/payments", async (req, res) => {
     try {
@@ -16,7 +17,7 @@ router.post("/payments", async (req, res) => {
         const paymentId = generateId();
         const eventId = generateId();
 
-        await fetch("http://localhost:3000/api/webhooks/payment", {
+        await fetch(`${API_URL}/api/webhooks/payment`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

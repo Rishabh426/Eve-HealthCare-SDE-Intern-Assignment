@@ -1,6 +1,8 @@
 import { redis } from "./lib/redis.js";
 import { prisma } from "./lib/prisma.js"
 
+const API_URL = process.env.API_URL;
+
 export async function processBooking(bookingId: string) {
 
     const booking = await prisma.booking.findUnique({
@@ -19,7 +21,7 @@ export async function processBooking(bookingId: string) {
         return;
     }
 
-    const response = await fetch("http://localhost:3000/api/payments", {
+    const response = await fetch(`${API_URL}/api/payments`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
