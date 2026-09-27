@@ -4,6 +4,7 @@ import centerRoutes from "./routes/center.routes.js"
 import bookingRoutes from "./routes/booking.routes.js"
 import paymentWebhookRoute from "./routes/payment.webhook.js"
 import paymentRoute from "./routes/payments.route.js"
+import { setupSwagger } from "./swagger.js";
 
 import { connectRedis } from "./lib/redis.js";
 import { startWorker } from "./worker.js";
@@ -11,6 +12,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+setupSwagger(app);
 
 app.use("/auth", authRoutes);
 app.use("/api", centerRoutes);

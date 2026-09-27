@@ -18,7 +18,6 @@ router.get("/centers", async (req, res) => {
         }
         return res.status(200).json({
             centers,
-            message: "Centers fetched successfully",
         })
     }
     catch(err) {
@@ -51,7 +50,6 @@ router.get("/centers/:id", async (req, res) => {
         }
         return res.status(200).json({
             center,
-            message: "Diagonstic Center fetched successfully."
         })
     }
     catch(err) {
@@ -83,7 +81,6 @@ router.get("/centers/:id/tests", async (req, res) => {
             centerId: center.id,
             centerName: center.name,
             tests: center.tests,
-            message: "Feteched Available tests"
         })
     }
     catch(err) {
