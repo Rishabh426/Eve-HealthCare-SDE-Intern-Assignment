@@ -1,5 +1,6 @@
 import { redis } from "./lib/redis.js";
 import { prisma } from "./lib/prisma.js"
+import "dotenv/config";
 
 const API_URL = process.env.API_URL;
 
