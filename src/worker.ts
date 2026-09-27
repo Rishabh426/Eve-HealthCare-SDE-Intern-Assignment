@@ -43,12 +43,18 @@ export async function processBooking(bookingId: string) {
 }
 
 export async function startWorker() {
+    const workerRedis = redis.duplicate();
+
+    await workerRedis.connect();
 
     console.log("Booking worker started");
 
     while (true) {
         try {
-            const result = await redis.brPop("booking_queue", 0);
+            const result = await workerRedis.brPop(
+                "booking_queue",
+                0
+            );
 
             if (!result) {
                 continue;
@@ -59,8 +65,7 @@ export async function startWorker() {
             console.log(`Processing booking: ${bookingId}`);
 
             await processBooking(bookingId);
-        } 
-        catch (error) {
+        } catch (error) {
             console.error("Worker error:", error);
         }
     }

@@ -25,5 +25,5 @@ const startServer = async () => {
     })
 }
 
-startServer();
+await startServer();
 startWorker();

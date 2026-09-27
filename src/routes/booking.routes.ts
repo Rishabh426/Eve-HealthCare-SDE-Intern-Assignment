@@ -90,7 +90,8 @@ router.post("/bookings", authenticate, async (req: AuthRequest, res) => {
             },
         });
         
-        redis.lPush("booking_queue", booking.id);
+        await redis.lPush("booking_queue", booking.id);
+        console.log("Booking added to Redis:", booking.id);
 
         return res.status(201).json({
             message: "Booking created successfully",
